@@ -14,30 +14,30 @@ public class T001_FaceBookTitleCheck {
         WebDriverManager.chromedriver().setup();
 
         //  2. Go to https://www.facebook.com
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(); //polymorphism
+        driver.manage().window().maximize();   //method chaining
         String url = "https://www.facebook.com";
         driver.get(url);
         //  3. Verify title:
         //  Expected: “Facebook – log in or sign up”
-        String expectedTitle="Facebook – log in or sign up";
+        String expectedTitle = "Facebook – log in or sign up";
         String actualTitle = driver.getTitle();
         System.out.println(actualTitle);
-        if (expectedTitle.equals(actualTitle)){
+        if (expectedTitle.equals(actualTitle)) {
             System.out.println("PASS");
-        }else {
+        } else {
             System.err.println("FAIL");
         }
 
 
-        //close the browser
-
+//wait before closing
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
 
         }
 
-
+//close the browser
         driver.close();
 
     }
