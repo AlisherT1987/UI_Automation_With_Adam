@@ -65,8 +65,7 @@ public class T002_FacebookUrlCheck {
 
         driver.close(); //only close the window without killing driver object
         driver.quit(); //killing the driver
-
-
+        
 
 
     }
