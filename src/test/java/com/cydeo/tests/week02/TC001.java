@@ -2,6 +2,7 @@ package com.cydeo.tests.week02;
 
 import com.cydeo.utilities.BrowserUtils;
 import com.cydeo.utilities.WebDriverFactory;
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -61,6 +62,41 @@ public class TC001 {
 
     }
 
+
+
+    /*
+    6. Enter name and email address
+    7. Click 'Signup' button
+    8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
+     */
+
+    @Test
+    public void verifyAccountInfo() {
+        Faker faker = new Faker();
+        String name = faker.name().firstName();
+
+        String email = name + faker.number().numberBetween(1, 1000) + "@gmail.com";
+//faker.internet().emailAddress()
+
+        clickModule("Signup / Login");
+
+
+        WebElement nameElement = driver.findElement(By.xpath("//input[@name='name']"));
+
+        nameElement.sendKeys(name);
+
+        WebElement emailElement = driver.findElement(By.xpath("(//input[@name='email'])[2]"));
+
+        emailElement.sendKeys(email);
+
+        driver.findElement(By.xpath("//button[.='Signup']")).click();
+
+        WebElement label = driver.findElement(By.xpath("//h2[contains(.,'Enter Account Information')]"));
+
+        Assert.assertTrue(label.isDisplayed());
+
+
+    }
 
     @AfterMethod
     public void tearDown() {
