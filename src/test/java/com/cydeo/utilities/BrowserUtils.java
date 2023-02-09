@@ -1,8 +1,11 @@
 package com.cydeo.utilities;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -51,4 +54,18 @@ public class BrowserUtils {
         Assert.assertTrue(driver.getTitle().contains(expectedInTitle));
     }
 
+    public static List<String> getTexts(List<WebElement> elements) {
+
+        List<String> result=new ArrayList<>();
+
+        for (WebElement element : elements) {
+
+            String eachText = element.getText();
+            result.add(eachText);
+
+        }
+
+        return result;
+
+    }
 }
