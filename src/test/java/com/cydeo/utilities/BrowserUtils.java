@@ -101,6 +101,10 @@ public class BrowserUtils {
         WebDriverWait wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+    public static void hover(WebElement element){
+        Actions actions=new Actions(Driver.getDriver());
+        actions.moveToElement(element).pause(2000).perform();
+    }
 
 
 
