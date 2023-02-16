@@ -81,7 +81,6 @@ public class TestCases {
     @Test
     public void test5() {
         cydeoPracticePage.clickOption("Key Presses");
-
         keyPressPage.clickKey(Keys.TAB);
         BrowserUtils.sleep(2);
         Assert.assertTrue(keyPressPage.result.getText().contains("TAB"));
