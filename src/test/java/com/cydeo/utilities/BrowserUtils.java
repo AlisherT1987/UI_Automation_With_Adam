@@ -1,9 +1,14 @@
 package com.cydeo.utilities;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -68,4 +73,35 @@ public class BrowserUtils {
         return result;
 
     }
+
+
+    public static void scrollToElement(WebElement element){
+        Actions actions=new Actions(Driver.getDriver());
+        actions.scrollToElement(element).perform();
+    }
+
+    public static void scrollToElement(By by){
+        Actions actions=new Actions(Driver.getDriver());
+        actions.scrollToElement(Driver.getDriver().findElement(by)).perform();
+    }
+
+    public static void clickElement(WebElement element){
+        //I need to have one condition for visibility
+        waitForVisibilityOf(element);
+        element.click();
+    }
+
+    public static void clickElement(By by){
+        //I need to have one condition for visibility
+       WebElement element= Driver.getDriver().findElement(by);
+        waitForVisibilityOf(element);
+        element.click();
+    }
+    public static void waitForVisibilityOf(WebElement element){
+        WebDriverWait wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
+
 }
